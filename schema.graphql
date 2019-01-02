@@ -1,0 +1,26 @@
+type User {
+  id: ID!
+  email: String!
+  password: String!
+}
+
+type Institution {
+  id: ID!
+  title: String!
+  description: String!
+  administrator: User! @belongsTo
+}
+
+type Intership {
+  id: ID!
+  title: String!
+  description: String!
+  institution: Institution! @belongsTo
+}
+
+type Application {
+  id: ID!
+  cv: String!
+  email: String!
+  intership: Intership! @belongsTo
+}
