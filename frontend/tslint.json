@@ -1,0 +1,9 @@
+
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "rules": {
+    "jsx-self-close": false,
+    "member-access": false
+  }
+}
