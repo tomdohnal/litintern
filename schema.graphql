@@ -24,3 +24,12 @@ type Application {
   email: String!
   intership: Intership! @belongsTo
 }
+
+type Query {
+  currentUser: User
+}
+
+type Mutation {
+  signUp(email: String!, password: String!): User!
+  signIn(email: String!, password: String!): User!
+}
