@@ -29,7 +29,11 @@ type Query {
   currentUser: User
 }
 
-type Mutation {
+type Mutation @group(middleware: ["auth:api"]) {
+  signOut: User!
+}
+
+extend type Mutation {
   signUp(email: String!, password: String!): User!
   signIn(email: String!, password: String!): User!
 }
