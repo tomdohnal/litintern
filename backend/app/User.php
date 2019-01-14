@@ -47,4 +47,14 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * User has one institution.
+     *
+     * @return boolean
+     */
+    public function institution()
+    {
+        return $this->hasOne('App\Institution');
+    }
 }
