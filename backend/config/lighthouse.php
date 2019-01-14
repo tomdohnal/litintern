@@ -42,7 +42,7 @@ return [
     */
     'route' => [
         'prefix' => '',
-        'middleware' => ['cookie', 'cookie-login']
+        'middleware' => ['cookie', 'cookie-login', 'cors']
     ],
 
     /*
