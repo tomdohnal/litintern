@@ -4,6 +4,8 @@
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "rules": {
     "jsx-self-close": false,
-    "member-access": false
+    "member-access": false,
+    "jsx-boolean-value": false,
+    "jsx-no-lambda": false
   }
 }
