@@ -1,7 +1,19 @@
+import ApolloClient from 'apollo-client'
+import { Grommet } from 'grommet'
 import App, { Container, NextAppContext } from 'next/app'
 import React from 'react'
+import { ApolloProvider } from 'react-apollo-hooks'
+import withData from '../utils/withData'
 
-export default class MyApp extends App {
+const theme = {
+  global: {
+    font: {
+      family: 'roboto',
+    },
+  },
+}
+
+class MyApp extends App<{ apollo: ApolloClient<any> }> {
   static async getInitialProps({ Component, ctx }: NextAppContext) {
     let pageProps = {}
 
@@ -13,11 +25,18 @@ export default class MyApp extends App {
   }
 
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, apollo } = this.props
+
     return (
       <Container>
-        <Component {...pageProps} />
+        <ApolloProvider client={apollo}>
+          <Grommet theme={theme}>
+            <Component {...pageProps} />
+          </Grommet>
+        </ApolloProvider>
       </Container>
     )
   }
 }
+
+export default withData(MyApp)
