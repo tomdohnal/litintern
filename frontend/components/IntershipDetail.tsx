@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import { useMutation, useQuery } from 'react-apollo-hooks'
+import { Application } from '../models/application'
 import { DELETE_INTERSHIP_MUTATION, INTERSHIP_QUERY } from '../models/intership'
 import { CURRENT_USER_QUERY } from '../models/user'
 import AuthGuard from './AuthGuard'
@@ -58,7 +59,7 @@ const IntershipDetail: React.FC<{ id: number }> = ({ id }) => {
             {!!data.intership.applications.length && (
               <>
                 <Heading level="3">Přihlášky</Heading>
-                {data.intership.applications.map(application => (
+                {data.intership.applications.map((application: Application) => (
                   <Box
                     elevation="medium"
                     key={application.id}

@@ -6,6 +6,7 @@
     "jsx-self-close": false,
     "member-access": false,
     "jsx-boolean-value": false,
-    "jsx-no-lambda": false
+    "jsx-no-lambda": false,
+    "interface-name": false
   }
 }
