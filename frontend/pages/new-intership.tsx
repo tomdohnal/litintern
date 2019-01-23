@@ -34,9 +34,7 @@ const NewIntership: React.FC = () => {
     <>
       <Box margin="medium">
         <Link href="/dashboard">
-          <a>
-            <Button label="Zpět" />
-          </a>
+          <a>Zpět</a>
         </Link>
       </Box>
       <Box justify="center" align="center" pad="large">
@@ -99,7 +97,7 @@ const NewIntership: React.FC = () => {
               />
             </FormField>
             <FormField label="Město " error={city.error}>
-              <Select
+              {/* <Select
                 options={['Praha', 'Brno']}
                 placeholder="Jaké město?"
                 value={city.value}
@@ -107,10 +105,21 @@ const NewIntership: React.FC = () => {
                 onChange={(e: { value: string }) => {
                   setCity({ value: e.value })
                 }}
-              />
+              /> */}
+              <select
+                value={city.value}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                  setCity({ value: e.target.value })
+                }}
+              >
+                <option value="">Vyber si město</option>
+                {['Praha', 'Brno'].map(option => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
             </FormField>
             <FormField label="Obor" error={city.error}>
-              <Select
+              {/* <Select
                 options={['Hardware', 'Software', 'Zemědělství']}
                 placeholder="Jaký obor?"
                 value={field.value}
@@ -118,7 +127,18 @@ const NewIntership: React.FC = () => {
                 onChange={(e: { value: string }) => {
                   setField({ value: e.value })
                 }}
-              />
+              /> */}
+              <select
+                value={field.value}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                  setField({ value: e.target.value })
+                }}
+              >
+                <option value="">Vyber si obor</option>
+                {['Hardware', 'Software', 'Zemědělství'].map(option => (
+                  <option value={option}>{option}</option>
+                ))}
+              </select>
             </FormField>
             <Button
               type="submit"

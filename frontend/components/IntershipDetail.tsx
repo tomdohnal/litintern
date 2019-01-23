@@ -27,9 +27,7 @@ const IntershipDetail: React.FC<{ id: number }> = ({ id }) => {
         <>
           <Box margin="medium">
             <Link href="/dashboard">
-              <a>
-                <Button label="Zpět" />
-              </a>
+              <a>Zpět</a>
             </Link>
           </Box>
           <Box margin={{ horizontal: 'xlarge' }}>

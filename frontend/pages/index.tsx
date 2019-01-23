@@ -105,7 +105,7 @@ const Index: React.FunctionComponent = () => {
           <FormInputs>
             <Box pad="medium">
               <FormField label="Město" error={city.error}>
-                <Select
+                {/* <Select
                   options={['Praha', 'Brno']}
                   placeholder="Jaké město?"
                   value={city.value}
@@ -113,12 +113,23 @@ const Index: React.FunctionComponent = () => {
                   onChange={(e: { value: string }) => {
                     setCity({ value: e.value })
                   }}
-                />
+                /> */}
+                <select
+                  value={city.value}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setCity({ value: e.target.value })
+                  }}
+                >
+                  <option value="">Vyber si město</option>
+                  {['Praha', 'Brno'].map(option => (
+                    <option value={option}>{option}</option>
+                  ))}
+                </select>
               </FormField>
             </Box>
             <Box pad="medium">
               <FormField label="Obor" error={field.error}>
-                <Select
+                {/* <Select
                   options={['Hardware', 'Software', 'Zemědělství']}
                   placeholder="Jaký obor?"
                   value={field.value}
@@ -126,7 +137,18 @@ const Index: React.FunctionComponent = () => {
                   onChange={(e: { value: string }) => {
                     setField({ value: e.value })
                   }}
-                />
+                /> */}
+                <select
+                  value={field.value}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+                    setField({ value: e.target.value })
+                  }}
+                >
+                  <option value="">Vyber si obor</option>
+                  {['Hardware', 'Software', 'Zemědělství'].map(option => (
+                    <option value={option}>{option}</option>
+                  ))}
+                </select>
               </FormField>
             </Box>
             <Box pad="medium" flex="grow">

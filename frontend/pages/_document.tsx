@@ -26,7 +26,7 @@ export default class MyDocument extends Document<{
 
   render() {
     return (
-      <html>
+      <html lang="cs">
         <Head>
           {this.props.styleTags}
           <link

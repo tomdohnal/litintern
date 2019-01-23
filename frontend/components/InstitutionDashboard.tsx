@@ -29,9 +29,7 @@ const InstitutionDashboard: React.FC = () => {
     <Box pad="medium">
       <Box alignSelf="end">
         <Link href="/new-intership">
-          <a>
-            <Button label="Nová stáž" />
-          </a>
+          <a>Nová stáž</a>
         </Link>
       </Box>
       <Box pad="large">
