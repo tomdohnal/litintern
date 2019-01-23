@@ -1,5 +1,5 @@
 import ggl from 'graphql-tag'
-import { Box, Button, FormField, Heading, TextInput } from 'grommet'
+import { Box, Button, FormField, Heading, Text, TextInput } from 'grommet'
 import Router from 'next/router'
 import React, { useState } from 'react'
 import { useMutation } from 'react-apollo-hooks'
@@ -25,6 +25,7 @@ const Login: React.FunctionComponent = () => {
   const [email, setEmail] = useFormField()
   const [password, setPassword] = useFormField()
   const [isRegistrationForm, setIsRegistrationForm] = useState(true)
+  const [error, setError] = useState('')
 
   const variables = { email: email.value, password: password.value }
 
@@ -43,6 +44,13 @@ const Login: React.FunctionComponent = () => {
           <Heading level="3">
             {isRegistrationForm ? 'Registrace' : 'Přihlášení'}
           </Heading>
+          {error && (
+            <Box margin={{ bottom: 'medium' }}>
+              <Text weight="bold" color="status-error">
+                {error}
+              </Text>
+            </Box>
+          )}
           <form
             onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
               e.preventDefault()
@@ -68,9 +76,18 @@ const Login: React.FunctionComponent = () => {
               }
 
               if (!hasError) {
-                await (isRegistrationForm ? signUp() : signIn())
+                try {
+                  await (isRegistrationForm ? signUp() : signIn())
 
-                Router.push('/dashboard')
+                  Router.push('/dashboard')
+                } catch (e) {
+                  setPassword({ value: '' })
+                  setError(
+                    isRegistrationForm
+                      ? `Při registraci došlo k chybě. E-mail je pravděpodobně již využíván.`
+                      : `Při přihlašování došlo k chybě. Pravděpodobně jste zadali špatné heslo.`,
+                  )
+                }
               }
             }}
           >
@@ -79,6 +96,7 @@ const Login: React.FunctionComponent = () => {
                 placeholder="jan.novak@example.org"
                 value={email.value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setError('')
                   setEmail({ value: e.target.value })
                 }}
               />
@@ -89,6 +107,7 @@ const Login: React.FunctionComponent = () => {
                 placeholder="mujPejsek123"
                 value={password.value}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                  setError('')
                   setPassword({ value: e.target.value })
                 }}
               />
@@ -96,15 +115,16 @@ const Login: React.FunctionComponent = () => {
             <Button
               type="submit"
               primary
-              margin={{ vertical: 'medium' }}
               fill
               label={isRegistrationForm ? 'Zaregistrovat se' : 'Přihlásit se'}
             />
           </form>
           <Button
             onClick={() => {
+              setError('')
               setIsRegistrationForm(!isRegistrationForm)
             }}
+            margin={{ top: 'medium' }}
             label={isRegistrationForm ? 'Už mám účet' : 'Ještě nemám účet'}
           />
         </Box>
