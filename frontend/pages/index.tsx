@@ -9,9 +9,12 @@ import {
   TextInput,
 } from 'grommet'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
+import { useApolloClient } from 'react-apollo-hooks'
 import styled from 'styled-components'
+import IntershipApplication from '../components/IntershipApplication'
 import useFormField from '../hooks/useFormField'
+import { Intership, INTERSHIPS_QUERY } from '../models/intership'
 
 const FormInputs = styled.div`
   display: flex;
@@ -26,6 +29,8 @@ const Index: React.FunctionComponent = () => {
   const [city, setCity] = useFormField()
   const [field, setField] = useFormField() // the field means the field of the intership not the field as the form field
   const [text, setText] = useFormField()
+  const [interships, setInterships] = useState<[Intership] | null>(null)
+  const client = useApolloClient()
 
   return (
     <>
@@ -52,7 +57,7 @@ const Index: React.FunctionComponent = () => {
         </Box>
       </Box>
       <Form
-        onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+        onSubmit={async (e: React.FormEvent<HTMLFormElement>) => {
           e.preventDefault()
 
           let hasError = false
@@ -67,6 +72,19 @@ const Index: React.FunctionComponent = () => {
             hasError = true
 
             setField({ error: 'Vyber si obor' })
+          }
+
+          if (!hasError && client) {
+            const result = await client.query<{ interships: [Intership] }>({
+              query: INTERSHIPS_QUERY,
+              variables: {
+                city: city.value,
+                field: field.value,
+                text: text.value,
+              },
+            })
+
+            setInterships(result.data.interships)
           }
         }}
       >
@@ -99,7 +117,7 @@ const Index: React.FunctionComponent = () => {
               </FormField>
             </Box>
             <Box pad="medium">
-              <FormField label="Obor" error={city.error}>
+              <FormField label="Obor" error={field.error}>
                 <Select
                   options={['Hardware', 'Software', 'Zemědělství']}
                   placeholder="Jaký obor?"
@@ -126,6 +144,19 @@ const Index: React.FunctionComponent = () => {
           <Button primary={true} label="Hledat" type="submit" />
         </Box>
       </Form>
+      {interships && !interships.length && (
+        <Box pad={{ horizontal: 'large' }} margin={{ bottom: 'large' }}>
+          <Heading level="3">Žádná stáž nenalezena</Heading>
+        </Box>
+      )}
+      {interships && !!interships.length && (
+        <Box pad={{ horizontal: 'large' }} margin={{ bottom: 'large' }}>
+          <Heading level="3">Výsledky hledání:</Heading>
+          {interships.map(intership => (
+            <IntershipApplication key={intership.id} intership={intership} />
+          ))}
+        </Box>
+      )}
     </>
   )
 }
