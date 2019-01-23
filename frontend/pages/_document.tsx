@@ -32,6 +32,10 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500"
           />
           <style>{`body { margin: 0; background: #F8F8F8 } a { text-decoration: none}`}</style>
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
           <title>Lit Intern</title>
         </Head>
         <body>
