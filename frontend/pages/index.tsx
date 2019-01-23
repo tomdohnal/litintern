@@ -18,7 +18,9 @@ import { Intership, INTERSHIPS_QUERY } from '../models/intership'
 
 const FormInputs = styled.div`
   display: flex;
-  flex-direction: row;
+  @media (max-width: 640px) {
+    flex-direction: column;
+  }
 `
 
 const Form = styled.form`
