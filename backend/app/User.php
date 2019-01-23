@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Institution;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -55,6 +56,6 @@ class User extends Authenticatable implements JWTSubject
      */
     public function institution()
     {
-        return $this->hasOne('App\Institution');
+        return $this->hasOne(Institution::class);
     }
 }
