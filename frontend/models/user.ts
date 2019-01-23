@@ -8,6 +8,13 @@ export const CURRENT_USER_QUERY = ggl`
       institution {
         title
         description
+        interships {
+          id
+          title
+          description
+          city
+          field
+        }
       }
     }
   }
