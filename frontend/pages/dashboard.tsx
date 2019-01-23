@@ -12,8 +12,12 @@ const Dashboard: React.FunctionComponent = () => {
   return (
     <AuthGuard>
       {loading && <Loading />}
-      {!loading && !data.currentUser.institution && <CreateInstitutionForm />}
-      {!loading && data.currentUser.institution && <InstitutionDashboard />}
+      {!loading && data.currentUser && !data.currentUser.institution && (
+        <CreateInstitutionForm />
+      )}
+      {!loading && data.currentUser && data.currentUser.institution && (
+        <InstitutionDashboard />
+      )}
     </AuthGuard>
   )
 }
