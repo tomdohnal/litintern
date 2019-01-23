@@ -13,6 +13,8 @@ const AuthGuard: React.FC = ({ children }) => {
 
   if (!data.currentUser) {
     Router.push('/login')
+
+    return null
   }
 
   return <>{children}</>
