@@ -10,6 +10,7 @@ type Institution {
   title: String!
   description: String!
   user: User! @belongsTo
+  interships: [Intership]! @hasMany
 }
 
 type Intership {
@@ -17,25 +18,40 @@ type Intership {
   title: String!
   description: String!
   institution: Institution! @belongsTo
+  city: String!
+  field: String!
+  applications: [Application]! @hasMany
 }
 
 type Application {
   id: ID!
-  cv: String!
+  text: String!
   email: String!
   intership: Intership! @belongsTo
 }
 
-type Query {
+type Query @group(middleware: ["auth:api"]) {
+  intership(id: ID): Intership!
+}
+
+extend type Query {
   currentUser: User
+  # ideally, we would have some sort of auth that would prevent accessing
+  # non-public properties (such as applications) on the interships
+  # with this implementation, nothing can hold back some user from
+  # sending a graphql request requesting all the data on the intership model
+  interships(text: String, city: String, field: String): [Intership]!
 }
 
 type Mutation @group(middleware: ["auth:api"]) {
   signOut: User!
   createInstitution(title: String!, description: String!): Institution!
+  createIntership(title: String!, description: String!, city: String!, field: String!): Intership!
+  deleteIntership(id: ID!): Intership!
 }
 
 extend type Mutation {
-  signUp(email: String!, password: String!): User!
   signIn(email: String!, password: String!): User!
+  signUp(email: String!, password: String!): User!
+  createApplication(email: String!, text: String!, intershipId: ID!): Application!
 }
