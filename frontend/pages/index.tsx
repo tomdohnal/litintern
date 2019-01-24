@@ -4,12 +4,12 @@ import {
   FormField,
   Heading,
   Paragraph,
-  Select,
+  // Select,
   Text,
   TextInput,
 } from 'grommet'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
 import styled from 'styled-components'
 import IntershipApplication from '../components/IntershipApplication'
@@ -177,7 +177,9 @@ const Index: React.FunctionComponent = () => {
         <Box pad={{ horizontal: 'large' }} margin={{ bottom: 'large' }}>
           <Heading level="3">Výsledky hledání:</Heading>
           {interships.map(intership => (
-            <IntershipApplication key={intership.id} intership={intership} />
+            <Fragment key={intership.id}>
+              <IntershipApplication intership={intership} />
+            </Fragment>
           ))}
         </Box>
       )}

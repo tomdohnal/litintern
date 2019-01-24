@@ -27,7 +27,19 @@ const InstitutionDashboard: React.FC = () => {
 
   return (
     <Box pad="medium">
-      <Box alignSelf="end">
+      <Box justify="between" direction="row">
+        <Button
+          label="Změnit barvu pozadí"
+          onClick={() => {
+            const color =
+              localStorage.getItem('backgroundColor') === '#DDBB77'
+                ? '#F8F8F8'
+                : '#DDBB77'
+
+            document.body.style.background = color
+            window.localStorage.setItem('backgroundColor', color)
+          }}
+        />
         <Link href="/new-intership">
           <a>Nová stáž</a>
         </Link>

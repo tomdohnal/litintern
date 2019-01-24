@@ -27,6 +27,10 @@ class MyApp extends App<{ apollo: ApolloClient<any> }> {
   render() {
     const { Component, pageProps, apollo } = this.props
 
+    if (typeof window !== 'undefined') {
+      document.body.style.background = localStorage.getItem('backgroundColor')
+    }
+
     return (
       <Container>
         <ApolloProvider client={apollo}>
