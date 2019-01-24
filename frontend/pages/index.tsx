@@ -40,7 +40,6 @@ const Index: React.FunctionComponent = () => {
         pad={{ horizontal: 'large', top: 'large', bottom: '180px' }}
         background="brand"
         align="center"
-        style={{ zIndex: 1 }}
       >
         <Box alignSelf="end">
           <Link href="/login">
@@ -53,7 +52,7 @@ const Index: React.FunctionComponent = () => {
           <Heading size="large" level="1" margin="none">
             Lit Intern
           </Heading>
-          <Paragraph style={{ maxWidth: '800px' }}>
+          <Paragraph>
             Najdi si stáž, kde budeš moct uplatnit své dovednosti a získat praxi
           </Paragraph>
         </Box>
@@ -177,9 +176,9 @@ const Index: React.FunctionComponent = () => {
         <Box pad={{ horizontal: 'large' }} margin={{ bottom: 'large' }}>
           <Heading level="3">Výsledky hledání:</Heading>
           {interships.map(intership => (
-            <Fragment key={intership.id}>
+            <article key={intership.id}>
               <IntershipApplication intership={intership} />
-            </Fragment>
+            </article>
           ))}
         </Box>
       )}

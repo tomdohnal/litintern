@@ -40,9 +40,14 @@ const InstitutionDashboard: React.FC = () => {
             window.localStorage.setItem('backgroundColor', color)
           }}
         />
-        <Link href="/new-intership">
-          <a>Nová stáž</a>
-        </Link>
+        <Box>
+          <Link href="/">
+            <a>Domů</a>
+          </Link>
+          <Link href="/new-intership">
+            <a>Nová stáž</a>
+          </Link>
+        </Box>
       </Box>
       <Box pad="large">
         {interships.length ? (

@@ -1,10 +1,18 @@
-import { Box, Paragraph } from 'grommet'
+import { Paragraph } from 'grommet'
 import React from 'react'
+import styled from 'styled-components'
+
+const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
 
 const Loading: React.FC = () => (
-  <Box style={{ height: '100vh' }} align="center" justify="center">
+  <Container>
     <Paragraph>Načítání...</Paragraph>
-  </Box>
+  </Container>
 )
 
 export default Loading

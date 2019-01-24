@@ -10,7 +10,7 @@ import { CURRENT_USER_QUERY } from '../models/user'
 import AuthGuard from './AuthGuard'
 import Loading from './Loading'
 
-const Content = styled.div`
+const Content = styled.article`
   @media print {
     margin: 8px;
     border: 2px black solid;
