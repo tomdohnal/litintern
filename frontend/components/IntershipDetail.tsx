@@ -3,11 +3,19 @@ import Link from 'next/link'
 import Router from 'next/router'
 import React from 'react'
 import { useMutation, useQuery } from 'react-apollo-hooks'
+import styled from 'styled-components'
 import { Application } from '../models/application'
 import { DELETE_INTERSHIP_MUTATION, INTERSHIP_QUERY } from '../models/intership'
 import { CURRENT_USER_QUERY } from '../models/user'
 import AuthGuard from './AuthGuard'
 import Loading from './Loading'
+
+const Content = styled.div`
+  @media print {
+    margin: 8px;
+    border: 2px black solid;
+  }
+`
 
 const IntershipDetail: React.FC<{ id: number }> = ({ id }) => {
   const { data, loading } = useQuery(INTERSHIP_QUERY, {
@@ -24,7 +32,7 @@ const IntershipDetail: React.FC<{ id: number }> = ({ id }) => {
     <AuthGuard>
       {loading && <Loading />}
       {!loading && data.intership && (
-        <>
+        <Content>
           <Box margin="medium">
             <Link href="/dashboard">
               <a>Zpět</a>
@@ -77,7 +85,7 @@ const IntershipDetail: React.FC<{ id: number }> = ({ id }) => {
               </>
             )}
           </Box>
-        </>
+        </Content>
       )}
     </AuthGuard>
   )
