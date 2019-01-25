@@ -9,7 +9,7 @@ import {
   TextInput,
 } from 'grommet'
 import Link from 'next/link'
-import React, { Fragment, useState } from 'react'
+import React, { useState } from 'react'
 import { useApolloClient } from 'react-apollo-hooks'
 import styled from 'styled-components'
 import IntershipApplication from '../components/IntershipApplication'
