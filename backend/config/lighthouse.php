@@ -56,7 +56,7 @@ return [
     |
     */
     'schema' => [
-        'register' => base_path('../schema.graphql'),
+        'register' => base_path('./schema.graphql'),
     ],
 
     /*
@@ -72,7 +72,7 @@ return [
     'cache' => [
         'enable' => env('LIGHTHOUSE_CACHE_ENABLE', false),
         'key' => env('LIGHTHOUSE_CACHE_KEY', 'lighthouse-schema'),
-    ],
+    ],  
 
     /*
     |--------------------------------------------------------------------------

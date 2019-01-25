@@ -18,8 +18,10 @@ Nakonec jsem našel knihovnu "lighthouse", která sice nemá na GitHubu nejvíce
 
 Co se autentizace týče, tak využívím JWT tokenu, který se posílá v cookie. Hesla jsou samozřejmě zahashovaná se spoustou soli.
 
+Automaticka dokumentace GraphQL api je dostupná na https://litinter-backend.herokuapp.com/graphql-playground
+
 ### Struktura
-Ústřední částí je pravděpodobně soubor `schema.graphql`. Zde jsou popsány typy (User, Intership atd.), queries a mutations.
+Ústřední částí je pravděpodobně soubor `backend/schema.graphql`. Zde jsou popsány typy (User, Intership atd.), queries a mutations.
 
 Laravel má svůj vlastní ORM, který docela dobře zapadá do GraphQL. Vztahy mezi jednotlivými modely jsou popsány v souborech v adresářích `backend/app/User.php` atd.
 
@@ -34,7 +36,7 @@ Databáze je "obyčejná" MySql. Avšak by se dala použít i jiná, jelikož s 
 ## Frontend
 Na frontendu je zvolena populární kombinace SPA knihovny React a TypeScriptu, což je jazyk, který se kompiluje do JavaScriptu a sám o sobě je de facto JavaScript obohacená o statické typování.
 
-S TypeScriptem jsem nebyl úplně zvyklý pracovat, avšak měl jsem nějaké zkušenosti s konkurenčím Flow (na které jsem ale v poslední době četl dost "hejtů" na Twitter, tak jsem zkusil TypeScript). A co se DX týče, tak super, integrace s VsCode je parádní. Co mě jen mrzelo je, že nástroje, které jsem zkoušel pro převedení `schema.graphql` do TypeScriptových typů si nevěděly rady s custom directives, které tam knihovna Lighthouse zaváděla. Jelikož jsem nechtěl trávit hodiny tím, než bych napsal nějaký skript, který by tyto direktivy odstraňoval, byl jsem bohužel o tento benefit připraven.
+S TypeScriptem jsem nebyl úplně zvyklý pracovat, avšak měl jsem nějaké zkušenosti s konkurenčím Flow (na které jsem ale v poslední době četl dost "hejtů" na Twitter, tak jsem zkusil TypeScript). A co se DX týče, tak super, integrace s VsCode je parádní. Co mě jen mrzelo je, že nástroje, které jsem zkoušel pro převedení `backend/schema.graphql` do TypeScriptových typů si nevěděly rady s custom directives, které tam knihovna Lighthouse zaváděla. Jelikož jsem nechtěl trávit hodiny tím, než bych napsal nějaký skript, který by tyto direktivy odstraňoval, byl jsem bohužel o tento benefit připraven.
 
 Pro data management jsem použil knihovnu Apollo. A samozřejmě jsem si nemohl nechat ujít příležitost nasadit alpha verzi Reactu, ve které jsou tzv. hooky, které dosti zjednodušují práci s komponenty a reuse logiky uvnitř reactích komponent.
 

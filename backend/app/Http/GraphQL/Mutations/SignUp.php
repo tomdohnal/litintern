@@ -24,7 +24,7 @@ class SignUp
     {
         $validator = Validator::make($args, [
             'email' => 'required|string|email|unique:users',
-            'password' => 'required|string|min:6'
+            'password' => 'required|string'
         ]);
 
         if ($validator->fails()) {

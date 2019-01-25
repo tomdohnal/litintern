@@ -13,7 +13,7 @@ return [
     */
    
     'supportsCredentials' => true,
-    'allowedOrigins' => ['http://localhost:3000'],
+    'allowedOrigins' => ['http://localhost:3000', 'https://litinter-backend.herokuapp.com', 'https://litintern.herokuapp.com'],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
     'allowedMethods' => [
